@@ -29,15 +29,4 @@ h2 {
   text-align: center;
   margin-top: 60px;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
-}
 </style>
