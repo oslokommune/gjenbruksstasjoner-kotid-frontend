@@ -1,16 +1,16 @@
 <template>
   <div id="queue-predictions">
-    <Queue />
+    <QueueTime />
   </div>
 </template>
 
 <script>
-import Queue from "./components/Queue.vue";
+import QueueTime from "./components/QueueTime.vue";
 
 export default {
   name: "App",
   components: {
-    Queue,
+    QueueTime,
   },
 };
 </script>
