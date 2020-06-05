@@ -18,7 +18,7 @@ export default {
   },
   computed: {
     roundedUpTime: function() {
-      return this.roundUpNumber(this.time);
+      return Math.round(this.time);
     },
   },
 
@@ -32,9 +32,6 @@ export default {
         .catch((error) => {
           console.log(error);
         });
-    },
-    roundUpNumber(num) {
-      return Math.round(num);
     },
   },
 };
