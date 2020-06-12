@@ -74,16 +74,8 @@ export default {
       return Math.round(hours * 60);
     },
     convertDate(date) {
-      var convertedDate = new Date(date);
-      const day = convertedDate.getUTCDate();
-      const month = convertedDate.getUTCMonth() + 1;
-      const year = convertedDate.getUTCFullYear();
-      const hours = convertedDate.getHours();
-      const minutes = convertedDate.getMinutes();
-      console.log(day, month, year, hours + ":" + minutes);
-      return (
-        day + "-" + month + "-" + year + " klokken: " + hours + ":" + minutes
-      );
+      var convertedDate = new Date(date).toLocaleString("nb");
+      return convertedDate;
     },
     mounted() {
       // this.getEstimatedQueueTime(url)
