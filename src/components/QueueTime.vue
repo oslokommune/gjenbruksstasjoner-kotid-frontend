@@ -3,7 +3,13 @@
     <div v-for="queueTimeArray in mockData" :key="queueTimeArray.station_id">
       <h1>{{ queueTimeArray.station_name }}</h1>
       <div v-if="showQueue">
-        <h2>Køtiden er {{ roundedUpTime }} minutter</h2>
+        <div v-if="queueIsFull">
+          <h2>
+            Køen går rundt hjørnet. Køtiden vil være minst
+            {{ roundedUpTime }} minutter
+          </h2>
+        </div>
+        <h2 v-else>Køtiden er {{ roundedUpTime }} minutter</h2>
       </div>
       <div v-else>
         <h2>Vi har ingen estimert køtid for øyeblikket</h2>
@@ -42,6 +48,9 @@ export default {
     },
     showQueue() {
       return this.mockData[0].queue !== null;
+    },
+    queueIsFull() {
+      return this.mockData[0].queue.is_full === true;
     },
   },
 
