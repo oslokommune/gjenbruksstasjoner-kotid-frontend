@@ -1,9 +1,13 @@
 <template>
   <div class="queue-time">
-    <div v-for="queueTimeArray in mockData" :key="queueTimeArray.station_id">
+    <div
+      class="queue-time-station"
+      v-for="queueTimeArray in mockData"
+      :key="queueTimeArray.station_id"
+    >
       <h1>{{ queueTimeArray.station_name }}</h1>
-      <div v-if="showQueue">
-        <div v-if="queueIsFull">
+      <div v-if="showQueue(queueTimeArray)">
+        <div v-if="queueIsFull(queueTimeArray)">
           <h2>
             Køen går utenfor våre beregninger. Køtiden vil være minst
             {{ hoursToMinutes(queueTimeArray.queue.expected_time) }} minutter,
@@ -15,9 +19,9 @@
           {{ hoursToMinutes(queueTimeArray.queue.min_time) }} -
           {{ hoursToMinutes(queueTimeArray.queue.max_time) }} minutter
         </h2>
-        <h3>
+        <p>
           Sist oppdatert: {{ convertDate(queueTimeArray.queue.updated_at) }}
-        </h3>
+        </p>
       </div>
       <div v-else>
         <h2>Vi har ingen estimert køtid for øyeblikket</h2>
@@ -36,7 +40,7 @@ export default {
       time: "10.73525436",
       mockData: [
         {
-          station_id: 42,
+          station_id: 44,
           station_name: "Haraldrud gjenbruksstasjon",
           is_open: true,
           queue: {
@@ -47,16 +51,35 @@ export default {
             updated_at: "2020-06-11T13:23:33.642441",
           },
         },
+        {
+          station_id: 42,
+          station_name: "Haraldrud gjenbruksstasjon",
+          is_open: true,
+          queue: {
+            is_full: true,
+            expected_time: 0.5,
+            min_time: 0.35,
+            max_time: 0.65,
+            updated_at: "2020-06-11T13:23:33.642441",
+          },
+        },
+
+        {
+          station_id: 44,
+          station_name: "Haraldrud gjenbruksstasjon",
+          is_open: true,
+          queue: null,
+        },
       ],
     };
   },
   computed: {
-    showQueue() {
-      return this.mockData[0].queue !== null;
+    /* showQueue() {
+      return this.queueTimeArray.queue !== null;
     },
     queueIsFull() {
-      return this.mockData[0].queue.is_full === true;
-    },
+      return this.queueTimeArray.queue.is_full === true;
+    },*/
   },
 
   methods: {
@@ -77,6 +100,12 @@ export default {
       var convertedDate = new Date(date).toLocaleString("nb");
       return convertedDate;
     },
+    showQueue(arr) {
+      return arr.queue !== null;
+    },
+    queueIsFull(arr) {
+      return arr.queue.is_full === true;
+    },
     mounted() {
       // this.getEstimatedQueueTime(url)
     },
@@ -90,13 +119,16 @@ export default {
 .queue-time {
   font-family: "Oslo Light", Helvetica, Arial, sans-serif;
 }
-h1 {
-  text-align: center;
+.queue-time-station {
   margin-top: 60px;
+}
+p {
+  text-align: center;
+  margin-top: 10px;
 }
 
 h2 {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 </style>
