@@ -5,11 +5,19 @@
       <div v-if="showQueue">
         <div v-if="queueIsFull">
           <h2>
-            Køen går rundt hjørnet. Køtiden vil være minst
-            {{ roundedUpTime }} minutter
+            Køen går utenfor våre beregninger. Køtiden vil være minst
+            {{ hoursToMinutes(queueTimeArray.queue.expected_time) }} minutter,
+            men kanskje mer.
           </h2>
         </div>
-        <h2 v-else>Køtiden er {{ roundedUpTime }} minutter</h2>
+        <h2 v-else>
+          Køtiden er
+          {{ hoursToMinutes(queueTimeArray.queue.min_time) }} -
+          {{ hoursToMinutes(queueTimeArray.queue.max_time) }} minutter
+        </h2>
+        <h3>
+          Sist oppdatert: {{ convertDate(queueTimeArray.queue.updated_at) }}
+        </h3>
       </div>
       <div v-else>
         <h2>Vi har ingen estimert køtid for øyeblikket</h2>
@@ -43,9 +51,6 @@ export default {
     };
   },
   computed: {
-    roundedUpTime: function() {
-      return Math.round(this.time);
-    },
     showQueue() {
       return this.mockData[0].queue !== null;
     },
@@ -64,6 +69,24 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    hoursToMinutes(hours) {
+      return Math.round(hours * 60);
+    },
+    convertDate(date) {
+      var convertedDate = new Date(date);
+      const day = convertedDate.getUTCDate();
+      const month = convertedDate.getUTCMonth() + 1;
+      const year = convertedDate.getUTCFullYear();
+      const hours = convertedDate.getHours();
+      const minutes = convertedDate.getMinutes();
+      console.log(day, month, year, hours + ":" + minutes);
+      return (
+        day + "-" + month + "-" + year + " klokken: " + hours + ":" + minutes
+      );
+    },
+    mounted() {
+      // this.getEstimatedQueueTime(url)
     },
   },
 };
