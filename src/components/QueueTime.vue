@@ -2,25 +2,25 @@
   <div class="queue-time">
     <div
       class="queue-time-station"
-      v-for="queueTimeArray in mockData"
-      :key="queueTimeArray.station_id"
+      v-for="queueTimeObjects in mockData"
+      :key="queueTimeObjects.station_id"
     >
-      <h1>{{ queueTimeArray.station_name }}</h1>
-      <div v-if="showQueue(queueTimeArray)">
-        <div v-if="queueIsFull(queueTimeArray)">
+      <h1>{{ queueTimeObjects.station_name }}</h1>
+      <div v-if="showQueue(queueTimeObjects)">
+        <div v-if="queueIsFull(queueTimeObjects)">
           <h2>
             Køen går utenfor våre beregninger. Køtiden vil være minst
-            {{ hoursToMinutes(queueTimeArray.queue.expected_time) }} minutter,
+            {{ hoursToMinutes(queueTimeObjects.queue.expected_time) }} minutter,
             men kanskje mer.
           </h2>
         </div>
         <h2 v-else>
           Køtiden er
-          {{ hoursToMinutes(queueTimeArray.queue.min_time) }} -
-          {{ hoursToMinutes(queueTimeArray.queue.max_time) }} minutter
+          {{ hoursToMinutes(queueTimeObjects.queue.min_time) }} -
+          {{ hoursToMinutes(queueTimeObjects.queue.max_time) }} minutter
         </h2>
         <p>
-          Sist oppdatert: {{ convertDate(queueTimeArray.queue.updated_at) }}
+          Sist oppdatert: {{ convertDate(queueTimeObjects.queue.updated_at) }}
         </p>
       </div>
       <div v-else>
@@ -65,21 +65,13 @@ export default {
         },
 
         {
-          station_id: 44,
+          station_id: 46,
           station_name: "Haraldrud gjenbruksstasjon",
           is_open: true,
           queue: null,
         },
       ],
     };
-  },
-  computed: {
-    /* showQueue() {
-      return this.queueTimeArray.queue !== null;
-    },
-    queueIsFull() {
-      return this.queueTimeArray.queue.is_full === true;
-    },*/
   },
 
   methods: {
@@ -100,11 +92,11 @@ export default {
       var convertedDate = new Date(date).toLocaleString("nb");
       return convertedDate;
     },
-    showQueue(arr) {
-      return arr.queue !== null;
+    showQueue(obj) {
+      return obj.queue !== null;
     },
-    queueIsFull(arr) {
-      return arr.queue.is_full === true;
+    queueIsFull(obj) {
+      return obj.queue.is_full === true;
     },
     mounted() {
       // this.getEstimatedQueueTime(url)
