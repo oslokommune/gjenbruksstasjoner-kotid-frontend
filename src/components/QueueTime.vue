@@ -1,7 +1,32 @@
 <template>
   <div class="queue-time">
-    <h1>Køtid - gjenbruksstasjon</h1>
-    <h2>{{ roundedUpTime }} minutter</h2>
+    <div
+      class="queue-time-station"
+      v-for="queueTimeObjects in mockData"
+      :key="queueTimeObjects.station_id"
+    >
+      <h1>{{ queueTimeObjects.station_name }}</h1>
+      <div v-if="showQueue(queueTimeObjects)">
+        <div v-if="queueIsFull(queueTimeObjects)">
+          <h2>
+            Køen går utenfor våre beregninger. Køtiden vil være minst
+            {{ hoursToMinutes(queueTimeObjects.queue.expected_time) }} minutter,
+            men kanskje mer.
+          </h2>
+        </div>
+        <h2 v-else>
+          Køtiden er
+          {{ hoursToMinutes(queueTimeObjects.queue.min_time) }} -
+          {{ hoursToMinutes(queueTimeObjects.queue.max_time) }} minutter
+        </h2>
+        <p>
+          Sist oppdatert: {{ convertDate(queueTimeObjects.queue.updated_at) }}
+        </p>
+      </div>
+      <div v-else>
+        <h2>Vi har ingen estimert køtid for øyeblikket</h2>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -13,13 +38,40 @@ export default {
   data() {
     return {
       time: "10.73525436",
-      url: "venter på url",
+      mockData: [
+        {
+          station_id: 44,
+          station_name: "Haraldrud gjenbruksstasjon",
+          is_open: true,
+          queue: {
+            is_full: false,
+            expected_time: 0.5,
+            min_time: 0.35,
+            max_time: 0.65,
+            updated_at: "2020-06-11T13:23:33.642441",
+          },
+        },
+        {
+          station_id: 42,
+          station_name: "Haraldrud gjenbruksstasjon",
+          is_open: true,
+          queue: {
+            is_full: true,
+            expected_time: 0.5,
+            min_time: 0.35,
+            max_time: 0.65,
+            updated_at: "2020-06-11T13:23:33.642441",
+          },
+        },
+
+        {
+          station_id: 46,
+          station_name: "Haraldrud gjenbruksstasjon",
+          is_open: true,
+          queue: null,
+        },
+      ],
     };
-  },
-  computed: {
-    roundedUpTime: function() {
-      return Math.round(this.time);
-    },
   },
 
   methods: {
@@ -33,6 +85,22 @@ export default {
           console.log(error);
         });
     },
+    hoursToMinutes(hours) {
+      return Math.round(hours * 60);
+    },
+    convertDate(date) {
+      var convertedDate = new Date(date).toLocaleString("nb");
+      return convertedDate;
+    },
+    showQueue(obj) {
+      return obj.queue !== null;
+    },
+    queueIsFull(obj) {
+      return obj.queue.is_full === true;
+    },
+    mounted() {
+      // this.getEstimatedQueueTime(url)
+    },
   },
 };
 </script>
@@ -43,13 +111,16 @@ export default {
 .queue-time {
   font-family: "Oslo Light", Helvetica, Arial, sans-serif;
 }
-h1 {
-  text-align: center;
+.queue-time-station {
   margin-top: 60px;
+}
+p {
+  text-align: center;
+  margin-top: 10px;
 }
 
 h2 {
   text-align: center;
-  margin-top: 60px;
+  margin-top: 10px;
 }
 </style>
