@@ -6,6 +6,14 @@
       :key="queueTimeObjects.station_id"
     >
       <h1>{{ queueTimeObjects.station_name }}</h1>
+      <div class="images">
+        <!--Need some work on show images with same ID as queueData-->
+        <QueueImages
+          v-if="images.station_id == queueTimeObjects.station_id"
+          :images="images"
+        />
+      </div>
+
       <div v-if="showQueue(queueTimeObjects)">
         <div v-if="queueIsFull(queueTimeObjects)">
           <h2>
@@ -31,16 +39,20 @@
 </template>
 
 <script>
+import QueueImages from "./QueueImages.vue";
+import Images from "@/images/images.json";
 import axios from "axios";
-
 export default {
   name: "Queue-time",
+  components: {
+    QueueImages,
+  },
   data() {
     return {
-      time: "10.73525436",
+      images: Images.images,
       mockData: [
         {
-          station_id: 44,
+          station_id: 42,
           station_name: "Haraldrud gjenbruksstasjon",
           is_open: true,
           queue: {
@@ -52,8 +64,8 @@ export default {
           },
         },
         {
-          station_id: 42,
-          station_name: "Haraldrud gjenbruksstasjon",
+          station_id: 10,
+          station_name: "Grønmo gjenbruksstasjon",
           is_open: true,
           queue: {
             is_full: true,
@@ -63,17 +75,15 @@ export default {
             updated_at: "2020-06-11T13:23:33.642441",
           },
         },
-
         {
-          station_id: 46,
-          station_name: "Haraldrud gjenbruksstasjon",
+          station_id: 82,
+          station_name: "Smestad gjenbruksstasjon",
           is_open: true,
           queue: null,
         },
       ],
     };
   },
-
   methods: {
     getEstimatedQueueTime(url) {
       axios
@@ -84,6 +94,9 @@ export default {
         .catch((error) => {
           console.log(error);
         });
+    },
+    mounted() {
+      // this.getEstimatedQueueTime(url)
     },
     hoursToMinutes(hours) {
       return Math.round(hours * 60);
@@ -97,9 +110,6 @@ export default {
     },
     queueIsFull(obj) {
       return obj.queue.is_full === true;
-    },
-    mounted() {
-      // this.getEstimatedQueueTime(url)
     },
   },
 };
