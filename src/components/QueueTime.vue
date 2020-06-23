@@ -6,14 +6,10 @@
       :key="queueTimeObjects.station_id"
     >
       <h1>{{ queueTimeObjects.station_name }}</h1>
-      <div class="images">
-        <!--Need some work on show images with same ID as queueData-->
-        <QueueImages
-          v-if="images.station_id == queueTimeObjects.station_id"
-          :images="images"
-        />
+      <!--Need some help here! You may have an infinite update loop in a component render function.-->
+      <div class="images" v-if="getImageById(queueTimeObjects.station_id)">
+        <QueueImages :image="image" />
       </div>
-
       <div v-if="showQueue(queueTimeObjects)">
         <div v-if="queueIsFull(queueTimeObjects)">
           <h2>
@@ -50,6 +46,7 @@ export default {
   data() {
     return {
       images: Images.images,
+      image: [],
       mockData: [
         {
           station_id: 42,
@@ -95,9 +92,11 @@ export default {
           console.log(error);
         });
     },
-    mounted() {
-      // this.getEstimatedQueueTime(url)
+    getImageById(id) {
+      this.image = this.images.filter((img) => img.station_id === id);
+      return this.image;
     },
+
     hoursToMinutes(hours) {
       return Math.round(hours * 60);
     },
@@ -110,6 +109,9 @@ export default {
     },
     queueIsFull(obj) {
       return obj.queue.is_full === true;
+    },
+    mounted() {
+      // this.getEstimatedQueueTime(url)
     },
   },
 };
