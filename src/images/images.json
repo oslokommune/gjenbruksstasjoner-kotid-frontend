@@ -1,0 +1,24 @@
+{
+  "images": [
+    {
+      "station_id": 10,
+      "src": "gronmo_now.jpg"
+    },
+    {
+      "station_id": 42,
+      "src": "haraldrud_now.jpg"
+    },
+    {
+      "station_id": 82,
+      "src": "smestad_now.jpg"
+    },
+    {
+      "station_id": 31,
+      "src": null
+    },
+    {
+      "station_id": 86,
+      "src": null
+    }
+  ]
+}
