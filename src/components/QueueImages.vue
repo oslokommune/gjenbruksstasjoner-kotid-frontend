@@ -1,10 +1,8 @@
 <template>
-  <div class="queue-images">
-    <div v-for="imageObjects in image" :key="imageObjects.station_id">
-      <p>
-        {{ imageObjects.src }}
-      </p>
-    </div>
+  <div class="queue-images" v-if="image">
+    <p>
+      {{ image.src }}
+    </p>
   </div>
 </template>
 
@@ -15,7 +13,7 @@ export default {
     return {};
   },
   props: {
-    image: Array,
+    image: Object,
   },
 };
 </script>
