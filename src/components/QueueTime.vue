@@ -8,6 +8,7 @@
       <h2>{{ queueTimeObjects.station_name }}</h2>
       <QueueImages :image="getImageById(queueTimeObjects.station_id)" />
       <div v-if="showQueue(queueTimeObjects)">
+        <p>Estimert køtid</p>
         <div v-if="queueIsFull(queueTimeObjects)">
           <h3>
             Køen går utenfor våre beregninger. Køtiden vil være minst
