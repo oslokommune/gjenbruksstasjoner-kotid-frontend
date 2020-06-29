@@ -1,7 +1,9 @@
 <template>
   <div class="queue-estimations">
-    <h1>Kø ved våre gjenbruksstasjoner</h1>
-    <p>Bildene oppdaters hvert 10. minutt</p>
+    <div class="title">
+      <h1>Kø ved våre gjenbruksstasjoner</h1>
+      <p>Bildene oppdaters hvert 10. minutt</p>
+    </div>
     <QueueTime />
   </div>
 </template>
@@ -22,6 +24,11 @@ export default {
 @import "~@/assets/sass/fontStyle.scss";
 .queue-estimations {
   font-family: "Oslo Light", Helvetica, Arial, sans-serif;
+}
+.title {
+  background-color: #034b45;
+  color: #c7f6c9;
+  padding: 30px;
 }
 p {
   text-align: center;

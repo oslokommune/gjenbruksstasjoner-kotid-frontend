@@ -27,6 +27,7 @@
       <div v-else>
         <h3>Vi har ingen estimert køtid for øyeblikket</h3>
       </div>
+      <hr />
     </div>
   </div>
 </template>
@@ -123,6 +124,9 @@ export default {
 }
 .queue-time-station {
   margin-top: 60px;
+}
+hr {
+  margin-top: 50px;
 }
 p {
   text-align: center;
