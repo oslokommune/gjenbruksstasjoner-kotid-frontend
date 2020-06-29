@@ -1,9 +1,9 @@
 <template>
   <div class="queue-estimations">
-    <div class="title">
+    <header>
       <h1>Kø ved våre gjenbruksstasjoner</h1>
-      <p>Bildene oppdaters hvert 10. minutt</p>
-    </div>
+      <p>Bildene oppdateres hvert 10. minutt</p>
+    </header>
     <QueueTime />
   </div>
 </template>
@@ -20,14 +20,16 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style scoped lang="scss">
 @import "~@/assets/sass/fontStyle.scss";
+@import "~@/assets/sass/variables";
+
 .queue-estimations {
   font-family: "Oslo Light", Helvetica, Arial, sans-serif;
 }
-.title {
-  background-color: #034b45;
-  color: #c7f6c9;
+header {
+  background-color: $oslo-dark-green;
+  color: $oslo-light-green;
   padding: 30px;
 }
 p {

@@ -15,16 +15,18 @@ export default {
 };
 </script>
 
-<style>
+<style lang="scss">
 @import "~@/assets/sass/fontStyle.scss";
+@import "~@/assets/sass/variables";
+
 #queue-predictions {
   font-family: "Oslo Light", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   font-size: 16px;
-  color: #2a2859;
-  background-color: white;
+  color: $oslo-dark-blue;
+  background-color: $background-color;
 }
 h1 {
   font-size: 2em;
