@@ -5,27 +5,27 @@
       v-for="queueTimeObjects in mockData"
       :key="queueTimeObjects.station_id"
     >
-      <h1>{{ queueTimeObjects.station_name }}</h1>
+      <h2>{{ queueTimeObjects.station_name }}</h2>
       <QueueImages :image="getImageById(queueTimeObjects.station_id)" />
       <div v-if="showQueue(queueTimeObjects)">
         <div v-if="queueIsFull(queueTimeObjects)">
-          <h2>
+          <h3>
             Køen går utenfor våre beregninger. Køtiden vil være minst
             {{ hoursToMinutes(queueTimeObjects.queue.expected_time) }} minutter,
             men kanskje mer.
-          </h2>
+          </h3>
         </div>
-        <h2 v-else>
+        <h3 v-else>
           Køtiden er
           {{ hoursToMinutes(queueTimeObjects.queue.min_time) }} -
           {{ hoursToMinutes(queueTimeObjects.queue.max_time) }} minutter
-        </h2>
+        </h3>
         <p>
           Sist oppdatert: {{ convertDate(queueTimeObjects.queue.updated_at) }}
         </p>
       </div>
       <div v-else>
-        <h2>Vi har ingen estimert køtid for øyeblikket</h2>
+        <h3>Vi har ingen estimert køtid for øyeblikket</h3>
       </div>
     </div>
   </div>
@@ -129,7 +129,7 @@ p {
   margin-top: 10px;
 }
 
-h2 {
+h3 {
   text-align: center;
   margin-top: 10px;
 }

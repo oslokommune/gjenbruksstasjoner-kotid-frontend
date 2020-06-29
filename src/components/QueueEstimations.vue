@@ -1,6 +1,7 @@
 <template>
   <div class="queue-estimations">
-    <h1>Køestimering</h1>
+    <h1>Kø ved våre gjenbruksstasjoner</h1>
+    <p>Bildene oppdaters hvert 10. minutt</p>
     <QueueTime />
   </div>
 </template>
@@ -27,7 +28,7 @@ p {
   margin-top: 10px;
 }
 
-h2 {
+h1 {
   text-align: center;
   margin-top: 10px;
 }
