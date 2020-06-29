@@ -2,11 +2,13 @@
   "images": [
     {
       "station_id": 10,
-      "src": "gronmo_now.jpg"
+      "src": "gronmo_now.jpg",
+      "comment": "Bomstasjonen inn på anlegget er i høyre billedkant."
     },
     {
       "station_id": 42,
-      "src": "haraldrud_now.jpg"
+      "src": "haraldrud_now.jpg",
+      "comment": "Bomstasjonen inn på anlegget er i venstre billedkant."
     },
     {
       "station_id": 82,

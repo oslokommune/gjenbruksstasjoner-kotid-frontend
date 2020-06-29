@@ -1,5 +1,8 @@
 <template>
   <div class="queue-images" v-if="image">
+    <div v-if="image.comment">
+      <p>{{ image.comment }}</p>
+    </div>
     <p>
       {{ image.src }}
     </p>
