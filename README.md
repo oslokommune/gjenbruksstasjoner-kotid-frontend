@@ -26,6 +26,24 @@ npm run build
 npm run lint
 ```
 
+### Deploy dev
+
+Needs saml2aws
+
+```
+make login-dev
+export AWS_PROFILE=saml-origo-dev
+npm run deploy-dev
+```
+
+### Deploy prod
+
+```
+make login-prod
+export AWS_PROFILE=saml-dataplatform-prod
+npm run deploy-prod
+```
+
 ### Customize configuration
 
 See [Configuration Reference](https://cli.vuejs.org/config/).

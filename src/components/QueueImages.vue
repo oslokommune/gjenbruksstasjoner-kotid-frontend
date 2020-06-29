@@ -4,7 +4,7 @@
       <p>{{ image.comment }}</p>
     </div>
     <p>
-      {{ image.src }}
+      <img :src="image.src" :alt="image.alt" class="full-size" />
     </p>
   </div>
 </template>
@@ -35,5 +35,10 @@ p {
 h2 {
   text-align: center;
   margin-top: 10px;
+}
+.full-size {
+  width: 100%;
+  max-width: 1400px;
+  height: auto;
 }
 </style>

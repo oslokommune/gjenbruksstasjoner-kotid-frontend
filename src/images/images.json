@@ -2,16 +2,22 @@
   "images": [
     {
       "station_id": 10,
+      "station_name": "Grønmo gjenbruksstasjon",
+      "alt": "Køen på Grønmo gjenbruksstasjon",
       "src": "gronmo_now.jpg",
       "comment": "Bomstasjonen inn på anlegget er i høyre billedkant."
     },
     {
       "station_id": 42,
-      "src": "haraldrud_now.jpg",
+      "station_name": "Haraldrud gjenbruksstasjon",
+      "alt": "Køen på Haraldrud gjenbruksstasjon",
+      "src": "https://ok-origo-dataplatform-public-dev.s3-eu-west-1.amazonaws.com/reg/gjenbruksstasjoner/penguin.jpg",
       "comment": "Bomstasjonen inn på anlegget er i venstre billedkant."
     },
     {
       "station_id": 82,
+      "station_name": "Smestad",
+      "alt": "Køen på Smestad gjenbruksstasjon",
       "src": "smestad_now.jpg"
     },
     {
