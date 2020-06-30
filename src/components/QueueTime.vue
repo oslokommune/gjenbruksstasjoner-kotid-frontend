@@ -1,8 +1,9 @@
+<!---Shows image and queue-predictions ---->
 <template>
   <div class="queue-time">
     <div
       class="queue-time-station"
-      v-for="queueTimeObjects in mockData"
+      v-for="queueTimeObjects in queueEstimations"
       :key="queueTimeObjects.station_id"
     >
       <h2>{{ queueTimeObjects.station_name }}</h2>
@@ -37,6 +38,8 @@
 import QueueImages from "./QueueImages.vue";
 import Images from "@/images/images.json";
 import axios from "axios";
+import conf from "@/conf";
+
 export default {
   name: "Queue-time",
   components: {
@@ -45,46 +48,19 @@ export default {
   data() {
     return {
       images: Images.images,
-      mockData: [
-        {
-          station_id: 42,
-          station_name: "Haraldrud gjenbruksstasjon",
-          is_open: true,
-          queue: {
-            is_full: false,
-            expected_time: 0.5,
-            min_time: 0.35,
-            max_time: 0.65,
-            updated_at: "2020-06-11T13:23:33.642441",
-          },
-        },
-        {
-          station_id: 10,
-          station_name: "Grønmo gjenbruksstasjon",
-          is_open: true,
-          queue: {
-            is_full: true,
-            expected_time: 0.5,
-            min_time: 0.35,
-            max_time: 0.65,
-            updated_at: "2020-06-11T13:23:33.642441",
-          },
-        },
-        {
-          station_id: 82,
-          station_name: "Smestad gjenbruksstasjon",
-          is_open: true,
-          queue: null,
-        },
-      ],
+      queueEstimations: [],
     };
   },
+  /**
+   * Get data every 10 minutes and 10 seconds 610000
+   * because image and queue predictions are updated every 10 minutes
+   */
   methods: {
     getEstimatedQueueTime(url) {
       axios
         .get(url)
         .then((response) => {
-          this.time = response.data;
+          this.queueEstimations = response.data;
         })
         .catch((error) => {
           console.log(error);
@@ -110,9 +86,16 @@ export default {
     queueIsFull(obj) {
       return obj.queue.is_full === true;
     },
-    mounted() {
-      // this.getEstimatedQueueTime(url)
-    },
+  },
+  mounted() {
+    this.getEstimatedQueueTime(conf.urls.queueData);
+    /**
+     * Get data every 10 minutes and 10 seconds
+     * because image and queue predictions are updated every 10 minutes
+     */
+    setInterval(() => {
+      this.getEstimatedQueueTime(conf.urls.queueData);
+    }, (10 * 60 + 10) * 1000);
   },
 };
 </script>
