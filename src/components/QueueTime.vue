@@ -8,27 +8,28 @@
     >
       <h2>{{ queueTimeObjects.station_name }}</h2>
       <QueueImages :image="getImageById(queueTimeObjects.station_id)" />
-      <div v-if="showQueue(queueTimeObjects)">
-        <p>Estimert køtid</p>
-        <div v-if="queueIsFull(queueTimeObjects)">
-          <h3>
-            Køen går utenfor våre beregninger. Køtiden vil være minst
-            {{ hoursToMinutes(queueTimeObjects.queue.expected_time) }} minutter,
-            men kanskje mer.
+      <div v-if="stationIsOpen(queueTimeObjects)">
+        <p>Estimert køtid:</p>
+        <div v-if="showQueue(queueTimeObjects)">
+          <div v-if="queueIsFull(queueTimeObjects)">
+            <h3>
+              Køen går utenfor våre beregninger. Køtiden vil være minst
+              {{ hoursToMinutes(queueTimeObjects.queue.expected_time) }}
+              minutter, men kanskje mer.
+            </h3>
+          </div>
+          <h3 v-else>
+            Køtiden er
+            {{ hoursToMinutes(queueTimeObjects.queue.min_time) }} -
+            {{ hoursToMinutes(queueTimeObjects.queue.max_time) }} minutter
           </h3>
+          <p>
+            Sist oppdatert: {{ convertDate(queueTimeObjects.queue.updated_at) }}
+          </p>
         </div>
-        <h3 v-else>
-          Køtiden er
-          {{ hoursToMinutes(queueTimeObjects.queue.min_time) }} -
-          {{ hoursToMinutes(queueTimeObjects.queue.max_time) }} minutter
-        </h3>
-        <p>
-          Sist oppdatert: {{ convertDate(queueTimeObjects.queue.updated_at) }}
-        </p>
+        <h3 v-else>Vi har ingen estimert køtid for denne gjenbruksstasjonen</h3>
       </div>
-      <div v-else>
-        <h3>Vi har ingen estimert køtid for øyeblikket</h3>
-      </div>
+      <h3 v-else>Beklager, vi er nå stengt</h3>
       <hr />
     </div>
   </div>
@@ -85,6 +86,9 @@ export default {
     },
     queueIsFull(obj) {
       return obj.queue.is_full === true;
+    },
+    stationIsOpen(obj) {
+      return obj.is_open === true;
     },
   },
   mounted() {

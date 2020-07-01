@@ -4,28 +4,30 @@
       "station_id": 10,
       "station_name": "Grønmo gjenbruksstasjon",
       "alt": "Køen på Grønmo gjenbruksstasjon",
-      "src": "gronmo_now.jpg",
+      "src": "https://ok-origo-dataplatform-public-prod.s3-eu-west-1.amazonaws.com/reg/gjenbruksstasjoner/gronmo_now.jpg",
       "comment": "Bomstasjonen inn på anlegget er i høyre billedkant."
     },
     {
       "station_id": 41,
       "station_name": "Haraldrud gjenbruksstasjon",
       "alt": "Køen på Haraldrud gjenbruksstasjon",
-      "src": "https://ok-origo-dataplatform-public-dev.s3-eu-west-1.amazonaws.com/reg/gjenbruksstasjoner/penguin.jpg",
+      "src": "https://ok-origo-dataplatform-public-prod.s3-eu-west-1.amazonaws.com/reg/gjenbruksstasjoner/haraldrud_now.jpg",
       "comment": "Bomstasjonen inn på anlegget er i venstre billedkant."
     },
     {
       "station_id": 82,
-      "station_name": "Smestad",
+      "station_name": "Smestad gjenbruksstasjon",
       "alt": "Køen på Smestad gjenbruksstasjon",
-      "src": "https://ok-origo-dataplatform-public-dev.s3-eu-west-1.amazonaws.com/reg/gjenbruksstasjoner/penguin.jpg"
+      "src": "https://ok-origo-dataplatform-public-prod.s3-eu-west-1.amazonaws.com/reg/gjenbruksstasjoner/smestad_now.jpg"
     },
     {
       "station_id": 31,
+      "station_name": "Haraldrud hageavfallsmottak",
       "src": null
     },
     {
       "station_id": 86,
+      "station_name": "Ryen gjenbruksstasjon",
       "src": null
     }
   ]
