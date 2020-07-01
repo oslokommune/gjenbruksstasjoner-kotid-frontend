@@ -37,7 +37,7 @@ h2 {
   margin-top: 10px;
 }
 .full-size {
-  width: 100%;
+  width: 80%;
   max-width: 1400px;
   height: auto;
 }

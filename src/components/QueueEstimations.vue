@@ -1,7 +1,7 @@
 <template>
   <div class="queue-estimations">
     <header>
-      <h1>Kø ved våre gjenbruksstasjoner</h1>
+      <h1>Køen ved våre gjenbruksstasjoner</h1>
       <p>Bildene oppdateres hvert 10. minutt</p>
     </header>
     <QueueTime />

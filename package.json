@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "VUE_APP_STAGE=development vue-cli-service build",
+    "build-prod": "VUE_APP_STAGE=production vue-cli-service build",
     "lint": "vue-cli-service lint",
     "deploy-dev": "aws s3 sync ./dist s3://ok-origo-dataplatform-public-dev/gjenbruksstasjoner-vue-test",
     "deploy-prod": "aws s3 sync ./dist s3://ok-origo-dataplatform-public-prod/gjenbruksstasjoner-vue-prod"

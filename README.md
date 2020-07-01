@@ -14,16 +14,16 @@ npm install
 npm run serve
 ```
 
-### Compiles and minifies for production
+### Compiles and minifies for development
 
 ```
 npm run build
 ```
 
-### Lints and fixes files
+### Compiles and minifies for production
 
 ```
-npm run lint
+npm run build-prod
 ```
 
 ### Deploy dev
@@ -36,12 +36,22 @@ export AWS_PROFILE=saml-origo-dev
 npm run deploy-dev
 ```
 
+Endpoint: https://ok-origo-dataplatform-public-dev.s3-eu-west-1.amazonaws.com/gjenbruksstasjoner-vue-test/index.html
+
 ### Deploy prod
 
 ```
 make login-prod
 export AWS_PROFILE=saml-dataplatform-prod
 npm run deploy-prod
+```
+
+Endpoint: https://ok-origo-dataplatform-public-prod.s3-eu-west-1.amazonaws.com/gjenbruksstasjoner-vue-prod/index.html
+
+### Lints and fixes files
+
+```
+npm run lint
 ```
 
 ### Customize configuration
