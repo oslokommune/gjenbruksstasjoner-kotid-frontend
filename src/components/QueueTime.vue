@@ -53,7 +53,7 @@ export default {
     };
   },
   /**
-   * Get data every 10 minutes and 10 seconds 610000
+   * Get data every 10 minutes and 10 seconds
    * because image and queue predictions are updated every 10 minutes
    */
   methods: {
