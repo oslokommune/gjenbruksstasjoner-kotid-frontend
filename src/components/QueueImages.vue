@@ -3,9 +3,9 @@
     <div v-if="image.comment">
       <p>{{ image.comment }}</p>
     </div>
-    <p>
-      <img :src="image.src" :alt="image.alt" class="full-size" />
-    </p>
+    <div class="crop">
+      <img :src="image.src" :alt="image.alt" :class="image.imageclass" />
+    </div>
   </div>
 </template>
 
@@ -37,8 +37,27 @@ h2 {
   margin-top: 10px;
 }
 .full-size {
-  width: 80%;
   max-width: 1400px;
   height: auto;
+}
+.crop {
+  display: inline-block;
+  width: 90%;
+  max-width: 1400px;
+  overflow: hidden;
+}
+.crop > img {
+  width: 90%;
+}
+.crop-image-smestad {
+  margin: -35% 0 -5% 0;
+}
+.crop-image-gronmo {
+  margin: -30% 0 -15% 0;
+}
+@media screen and (max-width: 600px) {
+  .crop {
+    width: 100%;
+  }
 }
 </style>
