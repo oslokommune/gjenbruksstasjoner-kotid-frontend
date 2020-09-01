@@ -6,31 +6,36 @@
       v-for="queueTimeObjects in queueEstimations"
       :key="queueTimeObjects.station_id"
     >
-      <h2>{{ queueTimeObjects.station_name }}</h2>
-      <QueueImages :image="getImageById(queueTimeObjects.station_id)" />
-      <div v-if="stationIsOpen(queueTimeObjects)">
-        <p>Estimert køtid:</p>
-        <div v-if="showQueue(queueTimeObjects)">
-          <div v-if="queueIsFull(queueTimeObjects)">
-            <h3>
-              Køen går utenfor våre beregninger. Køtiden vil være minst
-              {{ hoursToMinutes(queueTimeObjects.queue.expected_time) }}
-              minutter, men kanskje mer.
+      <div class="show-station" v-if="showStation(queueTimeObjects)">
+        <h2>{{ queueTimeObjects.station_name }}</h2>
+        <QueueImages :image="getImageById(queueTimeObjects.station_id)" />
+        <div v-if="stationIsOpen(queueTimeObjects)">
+          <p>Estimert køtid:</p>
+          <div v-if="showQueue(queueTimeObjects)">
+            <div v-if="queueIsFull(queueTimeObjects)">
+              <h3>
+                Køen går utenfor våre beregninger. Køtiden vil være minst
+                {{ hoursToMinutes(queueTimeObjects.queue.expected_time) }}
+                minutter, men kanskje mer.
+              </h3>
+            </div>
+            <h3 v-else>
+              Køtiden er
+              {{ hoursToMinutes(queueTimeObjects.queue.min_time) }} -
+              {{ hoursToMinutes(queueTimeObjects.queue.max_time) }} minutter
             </h3>
+            <p>
+              Sist oppdatert:
+              {{ convertDate(queueTimeObjects.queue.updated_at) }}
+            </p>
           </div>
           <h3 v-else>
-            Køtiden er
-            {{ hoursToMinutes(queueTimeObjects.queue.min_time) }} -
-            {{ hoursToMinutes(queueTimeObjects.queue.max_time) }} minutter
+            Vi har ingen estimert køtid for denne gjenbruksstasjonen
           </h3>
-          <p>
-            Sist oppdatert: {{ convertDate(queueTimeObjects.queue.updated_at) }}
-          </p>
         </div>
-        <h3 v-else>Vi har ingen estimert køtid for denne gjenbruksstasjonen</h3>
+        <h3 v-else>Beklager, vi er nå stengt</h3>
+        <hr />
       </div>
-      <h3 v-else>Beklager, vi er nå stengt</h3>
-      <hr />
     </div>
   </div>
 </template>
@@ -81,8 +86,11 @@ export default {
       var convertedDate = new Date(date).toLocaleString("nb");
       return convertedDate;
     },
+    showStation(obj) {
+      return obj.show_station;
+    },
     showQueue(obj) {
-      return obj.queue !== null;
+      return obj.queue !== null && obj.queue_prediction_enabled;
     },
     queueIsFull(obj) {
       return obj.queue.is_full === true;
