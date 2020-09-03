@@ -3,30 +3,33 @@
   <div class="queue-time">
     <div
       class="queue-time-station"
-      v-for="queueTimeObjects in queueEstimations"
-      :key="queueTimeObjects.station_id"
+      v-for="queueTimeObject in queueEstimations"
+      :key="queueTimeObject.station_id"
     >
-      <div class="show-station" v-if="showStation(queueTimeObjects)">
-        <h2>{{ queueTimeObjects.station_name }}</h2>
-        <QueueImages :image="getImageById(queueTimeObjects.station_id)" />
-        <div v-if="stationIsOpen(queueTimeObjects)">
+      <div class="show-station" v-if="showStation(queueTimeObject)">
+        <h2>{{ queueTimeObject.station_name }}</h2>
+        <QueueImages :image="getImageById(queueTimeObject.station_id)" />
+        <div v-if="stationIsOpen(queueTimeObject)">
           <p>Estimert køtid:</p>
-          <div v-if="showQueue(queueTimeObjects)">
-            <div v-if="queueIsFull(queueTimeObjects)">
+          <div v-if="showQueue(queueTimeObject)">
+            <div v-if="queueIsFull(queueTimeObject)">
               <h3>
                 Køen går utenfor våre beregninger. Køtiden vil være minst
-                {{ hoursToMinutes(queueTimeObjects.queue.expected_time) }}
+                {{ hoursToMinutes(queueTimeObject.queue.expected_time) }}
                 minutter, men kanskje mer.
               </h3>
             </div>
+            <h3 v-else-if="queueIsEmpty(queueTimeObject)">
+              Det er lite eller ingen kø
+            </h3>
             <h3 v-else>
               Køtiden er
-              {{ hoursToMinutes(queueTimeObjects.queue.min_time) }} -
-              {{ hoursToMinutes(queueTimeObjects.queue.max_time) }} minutter
+              {{ hoursToMinutes(queueTimeObject.queue.min_time) }} -
+              {{ hoursToMinutes(queueTimeObject.queue.max_time) }} minutter
             </h3>
             <p>
               Sist oppdatert:
-              {{ convertDate(queueTimeObjects.queue.updated_at) }}
+              {{ convertDate(queueTimeObject.queue.updated_at) }}
             </p>
           </div>
           <h3 v-else>
@@ -91,6 +94,13 @@ export default {
     },
     showQueue(obj) {
       return obj.queue !== null && obj.queue_prediction_enabled;
+    },
+    /**
+     * Return true if the queue appears to be empty (i.e. both the
+     * lower and upper estimated waiting times are 0 minutes).
+     */
+    queueIsEmpty(obj) {
+      return obj.queue.min_time === 0 && obj.queue.max_time === 0;
     },
     queueIsFull(obj) {
       return obj.queue.is_full === true;
