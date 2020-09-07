@@ -14,7 +14,7 @@
           <div v-if="showQueue(queueTimeObject)">
             <div v-if="queueIsFull(queueTimeObject)">
               <h3>
-                Køen går utenfor våre beregninger. Køtiden vil være minst
+                Kameraet kan ikke se enden av køen. Køtiden vil være minst
                 {{ hoursToMinutes(queueTimeObject.queue.expected_time) }}
                 minutter, men kanskje mer.
               </h3>
