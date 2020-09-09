@@ -21,7 +21,7 @@
       "station_name": "Smestad gjenbruksstasjon",
       "alt": "Køen på Smestad gjenbruksstasjon",
       "src": "https://ok-origo-dataplatform-public-prod.s3-eu-west-1.amazonaws.com/reg/gjenbruksstasjoner/smestad_now.jpg",
-      "imageclass": "crop-image-smestad"
+      "imageclass": "full-size"
     },
     {
       "station_id": 31,
