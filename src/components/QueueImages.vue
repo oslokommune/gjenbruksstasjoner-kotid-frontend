@@ -49,9 +49,6 @@ h2 {
 .crop > img {
   width: 90%;
 }
-.crop-image-smestad {
-  margin: -35% 0 -5% 0;
-}
 .crop-image-gronmo {
   margin: -30% 0 -15% 0;
 }
