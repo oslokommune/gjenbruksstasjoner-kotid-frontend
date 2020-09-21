@@ -24,6 +24,13 @@
       "imageclass": "full-size"
     },
     {
+      "station_id": 29,
+      "station_name": "Grefsen gjenbruksstasjon",
+      "src": "https://ok-origo-dataplatform-public-prod.s3-eu-west-1.amazonaws.com/reg/gjenbruksstasjoner/grefsen_now.jpg",
+      "alt": "Køen på Grefsen gjenbruksstasjon",
+      "imageclass": "full-size"
+    },
+    {
       "station_id": 31,
       "station_name": "Haraldrud hageavfallsmottak",
       "src": null
