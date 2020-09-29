@@ -27,9 +27,12 @@
               {{ hoursToMinutes(queueTimeObject.queue.min_time) }} -
               {{ hoursToMinutes(queueTimeObject.queue.max_time) }} minutter
             </h3>
-            <p>
+            <p class="date-text">
               Sist oppdatert:
               {{ convertDate(queueTimeObject.queue.updated_at) }}
+            </p>
+            <p class="beta-text">
+              Køtidsestimeringen er under utprøving - avvik kan forekomme
             </p>
           </div>
         </div>
@@ -122,6 +125,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "~@/assets/sass/fontStyle.scss";
+
 .queue-time {
   font-family: "Oslo Light", Helvetica, Arial, sans-serif;
 }
@@ -139,5 +143,11 @@ p {
 h3 {
   text-align: center;
   margin-top: 10px;
+}
+.beta-text {
+  font-size: 0.86rem;
+}
+.date-text {
+  font-size: 16px;
 }
 </style>
