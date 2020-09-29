@@ -10,8 +10,8 @@
         <h2>{{ queueTimeObject.station_name }}</h2>
         <QueueImages :image="getImageById(queueTimeObject.station_id)" />
         <div v-if="stationIsOpen(queueTimeObject)">
-          <p>Estimert køtid:</p>
           <div v-if="showQueue(queueTimeObject)">
+            <p>Estimert køtid:</p>
             <div v-if="queueIsFull(queueTimeObject)">
               <h3>
                 Kameraet kan ikke se enden av køen. Køtiden vil være minst
@@ -27,14 +27,14 @@
               {{ hoursToMinutes(queueTimeObject.queue.min_time) }} -
               {{ hoursToMinutes(queueTimeObject.queue.max_time) }} minutter
             </h3>
-            <p>
+            <p class="date-text">
               Sist oppdatert:
               {{ convertDate(queueTimeObject.queue.updated_at) }}
             </p>
+            <p class="beta-text">
+              Køtidsestimeringen er under utprøving - avvik kan forekomme
+            </p>
           </div>
-          <h3 v-else>
-            Vi har ingen estimert køtid for denne gjenbruksstasjonen
-          </h3>
         </div>
         <h3 v-else>Beklager, vi er nå stengt</h3>
         <hr />
@@ -125,6 +125,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "~@/assets/sass/fontStyle.scss";
+
 .queue-time {
   font-family: "Oslo Light", Helvetica, Arial, sans-serif;
 }
@@ -142,5 +143,11 @@ p {
 h3 {
   text-align: center;
   margin-top: 10px;
+}
+.beta-text {
+  font-size: 0.86rem;
+}
+.date-text {
+  font-size: 16px;
 }
 </style>
