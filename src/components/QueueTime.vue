@@ -10,8 +10,8 @@
         <h2>{{ queueTimeObject.station_name }}</h2>
         <QueueImages :image="getImageById(queueTimeObject.station_id)" />
         <div v-if="stationIsOpen(queueTimeObject)">
-          <p>Estimert køtid:</p>
           <div v-if="showQueue(queueTimeObject)">
+            <p>Estimert køtid:</p>
             <div v-if="queueIsFull(queueTimeObject)">
               <h3>
                 Kameraet kan ikke se enden av køen. Køtiden vil være minst
@@ -32,9 +32,6 @@
               {{ convertDate(queueTimeObject.queue.updated_at) }}
             </p>
           </div>
-          <h3 v-else>
-            Vi har ingen estimert køtid for denne gjenbruksstasjonen
-          </h3>
         </div>
         <h3 v-else>Beklager, vi er nå stengt</h3>
         <hr />
