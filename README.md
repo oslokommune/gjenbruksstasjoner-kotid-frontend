@@ -1,6 +1,6 @@
 # Gjenbruksstasjoner Køtid Frontend
 
-Vue-app that shows information from [Gjenbruksstasjoner Køtid API](https://github.oslo.kommune.no/origo-dataplatform/gjenbruksstasjoner-kotid-api)
+Vue-app that shows information from [Gjenbruksstasjoner Køtid API](https://github.com/oslokommune/gjenbruksstasjoner-kotid-api)
 
 ## Project setup
 
