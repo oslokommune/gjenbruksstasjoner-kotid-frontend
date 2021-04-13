@@ -20,12 +20,6 @@ npm run serve
 npm run build
 ```
 
-### Compiles and minifies for production
-
-```
-npm run build-prod
-```
-
 ### Deploy dev
 
 Needs saml2aws
@@ -37,6 +31,12 @@ npm run deploy-dev
 ```
 
 Endpoint: https://ok-origo-dataplatform-public-dev.s3-eu-west-1.amazonaws.com/gjenbruksstasjoner-vue-test/index.html
+
+### Compiles and minifies for production
+
+```
+npm run build-prod
+```
 
 ### Deploy prod
 
