@@ -6,7 +6,7 @@
       "alt": "Køen på Grønmo gjenbruksstasjon",
       "src": "https://ok-origo-dataplatform-public-prod.s3-eu-west-1.amazonaws.com/reg/gjenbruksstasjoner/gronmo_now.jpg",
       "comment": "Bomstasjonen inn på anlegget er i høyre billedkant.",
-      "imageclass": "crop-image-gronmo"
+      "imageclass": "full-size"
     },
     {
       "station_id": 41,
