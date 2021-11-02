@@ -1,10 +1,10 @@
 <template>
-  <div class="queue-images" v-if="image">
+  <div class="queue-images" v-if="imageUrl">
     <div v-if="image.comment">
       <p>{{ image.comment }}</p>
     </div>
     <div class="crop">
-      <img :src="image.src" :alt="image.alt" :class="image.imageclass" />
+      <img :src="imageUrl" :alt="image.alt" :class="image.imageclass" />
     </div>
   </div>
 </template>
@@ -12,12 +12,25 @@
 <script>
 export default {
   name: "Queue-Images",
-  data() {
-    return {};
-  },
+  data: () => ({
+    imageUrl: null
+  }),
   props: {
     image: Object,
   },
+  mounted() {
+    this.refreshImageUrl()
+    setInterval(() => {
+      this.refreshImageUrl()
+    }, (2 * 60) * 1000);
+  },
+  methods: {
+    refreshImageUrl() {
+      if (this.image) {
+        this.imageUrl = this.image.src + '?' + new Date().getTime()
+      }
+    }
+  }
 };
 </script>
 
