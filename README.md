@@ -26,7 +26,7 @@ Needs saml2aws
 
 ```
 make login-dev
-export AWS_PROFILE=saml-origo-dev
+export AWS_PROFILE=okdata-dev
 npm run deploy-dev
 ```
 
@@ -42,7 +42,7 @@ npm run build-prod
 
 ```
 make login-prod
-export AWS_PROFILE=saml-dataplatform-prod
+export AWS_PROFILE=okdata-prod
 npm run deploy-prod
 ```
 

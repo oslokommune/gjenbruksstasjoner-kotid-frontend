@@ -60,10 +60,6 @@ export default {
       queueEstimations: [],
     };
   },
-  /**
-   * Get data every 10 minutes and 10 seconds
-   * because image and queue predictions are updated every 10 minutes
-   */
   methods: {
     getEstimatedQueueTime(url) {
       axios
@@ -112,12 +108,12 @@ export default {
   mounted() {
     this.getEstimatedQueueTime(conf.urls.queueData);
     /**
-     * Get data every 10 minutes and 10 seconds
-     * because image and queue predictions are updated every 10 minutes
+     * Get data every 2 minutes to keep estimations updated.
+     * Image and queue predictions are updated every 10 minutes.
      */
     setInterval(() => {
       this.getEstimatedQueueTime(conf.urls.queueData);
-    }, (10 * 60 + 10) * 1000);
+    }, (2 * 60) * 1000);
   },
 };
 </script>
